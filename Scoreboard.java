@@ -66,7 +66,7 @@ public class ScoreBoard {
 	
 	private static void updatePoint(char ch) {
 		
-		if(ch == 'A') {
+		if(ch == 'A' || ch=='a') {
 			pointA = pointA + 1;
 			if(pointA==pointB && pointA>=4){
 				pointA=pointB=3;
