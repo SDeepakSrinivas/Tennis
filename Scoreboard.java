@@ -1,5 +1,5 @@
-
-public class Scoreboard {
+import java.io.*;
+public class ScoreBoard {
 
 	static Integer pointA = 0;
 	static Integer pointB = 0;
@@ -8,8 +8,10 @@ public class Scoreboard {
 	static Integer matchA = 0,matchB = 0;
 	
 	
-	public static void main(String[] args) {
-		String input = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+	public static void main(String[] args)throws IOException {
+	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	
+		String input = br.readLine();
 		updateScoreboard(input);
 		
 	}
@@ -32,8 +34,28 @@ public class Scoreboard {
 
 		p("     SET       GAME      POINT   \n");
 		p("---------------------------------\n");
-		p("A :\t"+setA+"\t"+gameA+"\t"+pointA+"\n");
-		p("B :\t"+setB+"\t"+gameB+"\t"+pointB+"\n");
+		p("A :\t"+setA+"\t"+gameA+"\t");
+		if(pointA==1)
+                    System.out.println(15);
+             else if(pointA==2)
+                    System.out.println(30);
+             else if(pointA==3)
+                    System.out.println(40);
+             else if(pointA==4)
+                    System.out.println("AD");
+			else 
+					System.out.println(0);
+		p("B :\t"+setB+"\t"+gameB+"\t");
+		if(pointB==1)
+                    System.out.println(15);
+             else if(pointB==2)
+                    System.out.println(30);
+             else if(pointB==3)
+                    System.out.println(40);
+             else if(pointB==4)
+                    System.out.println("AD");
+			else 
+					System.out.println(0);
 		p("---------------------------------\n");
 		
 	}
@@ -46,6 +68,9 @@ public class Scoreboard {
 		
 		if(ch == 'A') {
 			pointA = pointA + 1;
+			if(pointA==pointB && pointA>=4){
+				pointA=pointB=3;
+			}
 			if((pointA >= 4) && (pointA-pointB >= 2)){
 					pointA = pointB = 0;
 					updateGame(ch);
@@ -54,6 +79,9 @@ public class Scoreboard {
 			}
 		else {
 			pointB = pointB + 1;
+			if(pointA==pointB && pointA>=4){
+				pointA=pointB=3;
+			}
 			if((pointB >= 4) && (pointB-pointA >= 2)){
 				pointA = pointB = 0;
 				updateGame(ch);
